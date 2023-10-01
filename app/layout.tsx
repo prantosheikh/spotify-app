@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar";
+import ModalProvider from "@/providers/ModalProvider";
 import SupabaseProviders from "@/providers/SupabaseProvider";
 import UserProvider from "@/providers/UserProvider";
 import type { Metadata } from "next";
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <SupabaseProviders>
+          <ModalProvider />
           <UserProvider>
             <Sidebar>{children}</Sidebar>
           </UserProvider>
