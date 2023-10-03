@@ -12,6 +12,7 @@ interface LikedContentProps {
 }
 
 const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
+  console.log(songs);
   const router = useRouter();
   const { isLoading, user } = useUser();
   useEffect(() => {
