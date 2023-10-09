@@ -5,12 +5,12 @@ import {
 } from "@supabase/auth-helpers-react";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { Subscription, UseDetails } from "@/types";
+import { Subscription, UserDetails } from "@/types";
 
 type UserContextType = {
   accessToken: string | null;
   user: User | null;
-  userDetails: UseDetails | null;
+  userDetails: UserDetails | null;
   isLoading: boolean;
   subscription: Subscription | null;
 };
@@ -32,7 +32,7 @@ export const MyUserContextProvider = (props: Props) => {
   const user = useSupaUser();
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsloadingData] = useState(false);
-  const [userDetails, setUserDetails] = useState<UseDetails | null>(null);
+  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
 
   const getUserDetails = () => supabase.from("users").select("*").single();
@@ -52,7 +52,7 @@ export const MyUserContextProvider = (props: Props) => {
           const subscriptionPromise = results[1];
 
           if (userDetailsPromise.status === "fulfilled")
-            setUserDetails(userDetailsPromise.value.data as UseDetails);
+            setUserDetails(userDetailsPromise.value.data as UserDetails);
 
           if (subscriptionPromise.status === "fulfilled")
             setSubscription(subscriptionPromise.value.data as Subscription);
